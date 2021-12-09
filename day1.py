@@ -1,4 +1,4 @@
-txt = 'day1data.txt'
+txt = 'data.txt'
 
 # part one
 
