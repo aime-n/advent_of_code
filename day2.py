@@ -55,4 +55,4 @@ for move in moves:
         horizontal += int(units)
         depth += aim* int(units)
 
-print(horizontal * depth)
+print(horizontal )
