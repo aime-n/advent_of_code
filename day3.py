@@ -83,6 +83,7 @@ def find_oxygen(matrix):
             return list_to_decimal(matrix[0])
     return list_to_decimal(matrix[0])
 
+
 def find_CO2(matrix):
     for i in range(matrix.shape[1]):
         sum_ = np.sum(matrix[:, i])
