@@ -1,11 +1,13 @@
 import numpy as np
-# Part one:
+
+# Part one: first winner
 
 
 class Board:
     def __init__(self, board):
         self.board = board
         self.marked = np.full((5, 5), False, dtype=bool)
+        self.n = None
 
     def mark_number(self, number):
         index = np.where(self.board == number)
@@ -60,3 +62,39 @@ with open('day4.txt') as f:
 n_draw, boards = file_to_ndraws_boards(file)
 n_winner, board_winner = win_first(n_draw, boards)
 print(score(n_winner, board_winner))
+
+
+# Part two: last winner
+
+
+def test():
+    with open('day4test.txt') as f:
+        file = f.readlines()
+
+    n_draw, boards = file_to_ndraws_boards(file)
+    return n_draw, boards
+
+
+def win_last(n_draw, boards):
+    winners = []
+    for i in range(len(n_draw)):
+        for board in boards:
+            if board not in winners:
+                board.mark_number(n_draw[i])
+                if board.check_winner():
+                    board.n = n_draw[i]
+                    winners.append(board)
+    return winners[-1]
+
+
+n_draw, boards = test()
+last = win_last(n_draw, boards)
+print(last.marked)
+print(last.n)
+
+score(last.n, last)
+
+
+n_draw, boards = file_to_ndraws_boards(file)
+last = win_last(n_draw, boards)
+print(score(last.n, last))
